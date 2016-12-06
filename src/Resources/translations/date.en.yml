@@ -1,0 +1,63 @@
+month:
+    long:
+        january: January
+        february: February
+        march: March
+        april: April
+        may: May
+        june: June
+        july: July
+        august: August
+        september: September
+        october: October
+        november: November
+        december: December
+    short:
+        january: Jan
+        february: Feb
+        march: Mar
+        april: Apr
+        may: May
+        june: Jun
+        july: Jul
+        august: Aug
+        september: Sep
+        october: Oct
+        november: Nov
+        december: Dec
+    genitive:
+        january: January
+        february: February
+        march: March
+        april: April
+        may: May
+        june: June
+        july: July
+        august: August
+        september: September
+        october: October
+        november: November
+        december: December
+weekday:
+    long:
+        monday: Monday
+        tuesday: Tuesday
+        wednesday: Wednesday
+        thursday: Thursday
+        friday: Friday
+        saturday: Saturday
+        sunday: Sunday
+    short:
+        monday: Mon
+        tuesday: Tue
+        wednesday: Wed
+        thursday: Thu
+        friday: Fri
+        saturday: Sat
+        sunday: Sun
+passed:
+    minutes_ago: %minutes% minutes ago
+    in_minutes: In %minutes% minutes
+    today: Today at %time%
+    yesterday: Yesterday at %time%
+    tomorrow: Tomorrow at %time%

@@ -1,0 +1,55 @@
+services:
+    gpslab.date.comparator:
+        class: GpsLab\Bundle\DateBundle\Date\Comparator
+
+    gpslab.date.converter:
+        class: GpsLab\Bundle\DateBundle\Date\Converter
+
+    gpslab.date.util:
+        class: GpsLab\Bundle\DateBundle\Date\Util
+
+    gpslab.date.formatter:
+        class: GpsLab\Bundle\DateBundle\Date\Formatter
+        arguments: [ '@translator' ]
+
+    # Twig
+    gpslab.common.twig.extension:
+        class: GpsLab\Bundle\DateBundle\Twig\Extension
+        arguments:
+            - '@gpslab.date.formatter'
+            - '@gpslab.date.tz.converter'
+            - '@gpslab.date.tz.comparator'
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    # TimeZone utils
+    gpslab.date.tz.keeper:
+        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Keeper\ResolveAndKeep
+        arguments: [ '@gpslab.date.tz.resolver.chain', '@gpslab.date.converter', '%time_zone%' ]
+
+    gpslab.date.tz.resolver:
+        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\ChainResolver
+        public: false
+
+    gpslab.date.tz.resolver.console:
+        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\ConsoleResolver
+        arguments: [ '%time_zone%' ]
+        tags:
+            - { name: gpslab.date.tz.resolver, priority: 900 }
+        public: false
+
+    gpslab.date.tz.resolver.request:
+        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\RequestResolver
+        arguments: [ '@request_stack', '%date.time_zone.param.name%' ]
+        tags:
+            - { name: gpslab.date.tz.resolver, priority: 1000 }
+        public: false
+
+    gpslab.date.tz.comparator:
+        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Comparator
+        arguments: [ '@gpslab.date.comparator', '@gpslab.date.tz.keeper' ]
+
+    gpslab.date.tz.converter:
+        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Converter
+        arguments: [ '@gpslab.date.tz.keeper' ]

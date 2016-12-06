@@ -1,0 +1,63 @@
+month:
+    long:
+        january: Январь
+        february: Февраль
+        march: Март
+        april: Апрель
+        may: Май
+        june: Июнь
+        july: Июль
+        august: Август
+        september: Сентябрь
+        october: Октябрь
+        november: Ноябрь
+        december: Декабрь
+    short:
+        january: Янв
+        february: Фев
+        march: Мар
+        april: Апр
+        may: Май
+        june: Июн
+        july: Июл
+        august: Авг
+        september: Сен
+        october: Окт
+        november: Ноя
+        december: Дек
+    genitive:
+        january: Января
+        february: Февраля
+        march: Марта
+        april: Апреля
+        may: Мая
+        june: Июня
+        july: Июля
+        august: Августа
+        september: Сентября
+        october: Октября
+        november: Ноября
+        december: Декабря
+weekday:
+    long:
+        monday: Понедельник
+        tuesday: Вторник
+        wednesday: Среда
+        thursday: Четверг
+        friday: Пятница
+        saturday: Суббота
+        sunday: Воскресенье
+    short:
+        monday: Пн
+        tuesday: Вт
+        wednesday: Ср
+        thursday: Чт
+        friday: Пт
+        saturday: Сб
+        sunday: Вс
+passed:
+    minutes_ago: %minutes% минут назад
+    in_minutes: Через %minutes% минут
+    today: Сегодня в %time%
+    yesterday: Вчера в %time%
+    tomorrow: Завтра в %time%
