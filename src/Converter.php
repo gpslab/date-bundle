@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2016, Peter Gribanov
  * @license   http://opensource.org/licenses/MIT
  */
+
 namespace GpsLab\Bundle\DateBundle;
 
 class Converter
@@ -19,13 +20,10 @@ class Converter
     {
         if ($date instanceof \DateTime) {
             // not need convert
-
         } elseif ($date instanceof \DateTimeInterface) {
             $date = new \DateTime($date->format(\DateTime::ISO8601));
-
         } elseif (is_numeric($date)) { // is UTS
             $date = (new \DateTime())->setTimestamp($date);
-
         } else {
             $date = new \DateTime($date);
         }

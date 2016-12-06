@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2016, Peter Gribanov
  * @license   http://opensource.org/licenses/MIT
  */
+
 namespace GpsLab\Bundle\DateBundle\TimeZone;
 
 use GpsLab\Bundle\DateBundle\Comparator as DateComparator;
@@ -27,7 +28,7 @@ class Comparator extends DateComparator
     }
 
     /**
-     * Synonym for Comparator::compareDateTime()
+     * Synonym for Comparator::compareDateTime().
      *
      * @param \DateTime $x
      * @param string $operator
@@ -41,7 +42,7 @@ class Comparator extends DateComparator
     }
 
     /**
-     * Compare date and time
+     * Compare date and time.
      *
      * @param \DateTime $x
      * @param string $operator
@@ -55,7 +56,7 @@ class Comparator extends DateComparator
     }
 
     /**
-     * Compare only date. Not compare time
+     * Compare only date. Not compare time.
      *
      * @param \DateTime $x
      * @param string $operator
@@ -69,7 +70,7 @@ class Comparator extends DateComparator
     }
 
     /**
-     * Compare only time. Not compare date
+     * Compare only time. Not compare date.
      *
      * @param \DateTime $x
      * @param string $operator

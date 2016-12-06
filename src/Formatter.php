@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2016, Peter Gribanov
  * @license   http://opensource.org/licenses/MIT
  */
+
 namespace GpsLab\Bundle\DateBundle;
 
 use Symfony\Component\Translation\TranslatorInterface;
@@ -33,7 +34,7 @@ class Formatter
     }
 
     /**
-     * Format date
+     * Format date.
      *
      * @see date()
      *
@@ -51,7 +52,7 @@ class Formatter
         $escape = false;
         $length = strlen($format);
 
-        for ($pos = 0; $pos < $length; $pos++) {
+        for ($pos = 0; $pos < $length; ++$pos) {
             $char = mb_substr($format, $pos, 1, 'UTF-8');
 
             if ($char == '\\') {
@@ -59,11 +60,9 @@ class Formatter
                     $result .= $char;
                 }
                 $escape = !$escape;
-
             } elseif ($escape) { // escaped character
                 $result .= $char;
                 $escape = false;
-
             } else {
                 switch ($char) {
                     case 'f':
@@ -93,7 +92,7 @@ class Formatter
     }
 
     /**
-     * Passed date, such as 'i минут назад', 'через i минут', 'Сегодня в H:i', 'Вчера в H:i' or 'Завтра в H:i'
+     * Passed date, such as 'i минут назад', 'через i минут', 'Сегодня в H:i', 'Вчера в H:i' or 'Завтра в H:i'.
      *
      * @param \DateTime $date
      * @param string $time_format
@@ -116,22 +115,16 @@ class Formatter
 
         if ($minutes_ago > 0 && $minutes_ago < 60) {
             return $this->trans('passed.minutes_ago', ['%minutes%' => $minutes_ago]);
-
         } elseif ($minutes_in > 0 && $minutes_in < 60) {
             return $this->trans('passed.in_minutes', ['%minutes%' => $minutes_in]);
-
         } elseif ($today->format('ymd') == $date->format('ymd')) {
             return $this->trans('passed.today', ['%time%' => $this->format($date, $time_format)]);
-
         } elseif ($yesterday->format('ymd') == $date->format('ymd')) {
             return $this->trans('passed.yesterday', ['%time%' => $this->format($date, $time_format)]);
-
         } elseif ($tomorrow->format('ymd') == $date->format('ymd')) {
             return $this->trans('passed.tomorrow', ['%time%' => $this->format($date, $time_format)]);
-
         } elseif ($today->format('Y') == $date->format('Y')) {
             return $this->format($date, $month_format);
-
         } else {
             return $this->format($date, $year_format);
         }

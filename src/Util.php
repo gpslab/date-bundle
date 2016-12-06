@@ -6,15 +6,17 @@
  * @copyright Copyright (c) 2016, Peter Gribanov
  * @license   http://opensource.org/licenses/MIT
  */
+
 namespace GpsLab\Bundle\DateBundle;
 
 class Util
 {
     /**
-     * Get monday of this week
+     * Get monday of this week.
      *
      * Bugfix:
-     * @link https://bugs.php.net/bug.php?id=63740
+     *
+     * @see https://bugs.php.net/bug.php?id=63740
      *
      * @param \DateTime $date
      *

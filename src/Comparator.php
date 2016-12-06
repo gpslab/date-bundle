@@ -6,19 +6,20 @@
  * @copyright Copyright (c) 2016, Peter Gribanov
  * @license   http://opensource.org/licenses/MIT
  */
+
 namespace GpsLab\Bundle\DateBundle;
 
 class Comparator
 {
-    const EQ  = '=';
+    const EQ = '=';
     const NEQ = '!=';
-    const LT  = '<';
+    const LT = '<';
     const LTE = '<=';
-    const GT  = '>';
+    const GT = '>';
     const GTE = '>=';
 
     /**
-     * Synonym for Comparator::compareDateTime()
+     * Synonym for Comparator::compareDateTime().
      *
      * @param \DateTime $x
      * @param string $operator
@@ -32,7 +33,7 @@ class Comparator
     }
 
     /**
-     * Compare date and time
+     * Compare date and time.
      *
      * @param \DateTime $x
      * @param string $operator
@@ -63,7 +64,7 @@ class Comparator
     }
 
     /**
-     * Compare only date. Not compare time
+     * Compare only date. Not compare time.
      *
      * @param \DateTime $x
      * @param string $operator
@@ -77,7 +78,7 @@ class Comparator
     }
 
     /**
-     * Compare only time
+     * Compare only time.
      *
      * @param \DateTime $x
      * @param string $operator
