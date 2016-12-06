@@ -1,0 +1,29 @@
+{
+    "name": "gpslab/date-bundle",
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://github.com/gpslab/date-bundle",
+    "description": "Util for DateTime",
+    "autoload": {
+        "psr-4": {
+            "GpsLab\\Bundle\\DateBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GpsLab\\Bundle\\DateBundle\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "symfony/http-kernel": "^2.8.14",
+        "symfony/translation": "^2.8.14",
+        "symfony/dependency-injection": "^2.8.14",
+        "twig/twig": "~1.28|~2.0",
+        "phpunit/phpunit": "4.8.*",
+        "scrutinizer/ocular": "1.3.*",
+        "satooshi/php-coveralls": "^1.0"
+    }
+}
