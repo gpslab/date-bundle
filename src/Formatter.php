@@ -41,12 +41,12 @@ class Formatter
      * Additional:
      * f - Full name of the month, such as 'января' or 'марта' of January through December
      *
-     * @param \DateTimeInterface $date
+     * @param \DateTime $date
      * @param string $format
      *
      * @return string
      */
-    public function format(\DateTimeInterface $date, $format)
+    public function format(\DateTime $date, $format)
     {
         $result = '';
         $escape = false;
