@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2016, Peter Gribanov
  * @license   http://opensource.org/licenses/MIT
  */
+
 namespace GpsLab\Bundle\DateBundle\Tests;
 
 use Symfony\Component\Translation\TranslatorInterface;
@@ -84,7 +85,7 @@ class FormatterTest extends \PHPUnit_Framework_TestCase
                 $this->assertEquals([], $parameters);
                 $this->assertEquals('date', $domain);
 
-                return '|' . $id . '|';
+                return '|'.$id.'|';
             }));
 
         $this->assertEquals($expected, $this->formatter->format($this->date, $format));
@@ -112,19 +113,19 @@ class FormatterTest extends \PHPUnit_Framework_TestCase
                 ($date = new \DateTime('+2 hour')),
                 'passed.today',
                 ['%time%' => $date->format('H:i')],
-                'Сегодня в ' . $date->format('H:i'),
+                'Сегодня в '.$date->format('H:i'),
             ],
             [
                 ($date = new \DateTime('-1 day')),
                 'passed.yesterday',
                 ['%time%' => $date->format('H:i')],
-                'Вчера в ' . $date->format('H:i'),
+                'Вчера в '.$date->format('H:i'),
             ],
             [
                 ($date = new \DateTime('+1 day')),
                 'passed.tomorrow',
                 ['%time%' => $date->format('H:i')],
-                'Завтра в ' . $date->format('H:i'),
+                'Завтра в '.$date->format('H:i'),
             ],
             [
                 ($date = new \DateTime('+2 day')),
@@ -149,7 +150,7 @@ class FormatterTest extends \PHPUnit_Framework_TestCase
      * @param array $parameters
      * @param string $expected
      */
-    public function testPassed(\DateTime $date, $trans, array $parameters = [], $expected)
+    public function testPassed(\DateTime $date, $trans, array $parameters, $expected)
     {
         if ($trans) {
             $this->translator
