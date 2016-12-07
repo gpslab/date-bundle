@@ -50,3 +50,9 @@ services:
     gpslab.date.tz.converter:
         class: GpsLab\Bundle\DateBundle\Date\TimeZone\Converter
         arguments: [ '@gpslab.date.tz.keeper' ]
+
+    gpslab.date.listener.response:
+        class: GpsLab\Bundle\DateBundle\Event\Listener\ResponseListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponseSaveUserTimeZone }
+        arguments: [ '@gpslab.date.tz.keeper', '%date.time_zone.param.name%', '%date.time_zone.param.offset%' ]
