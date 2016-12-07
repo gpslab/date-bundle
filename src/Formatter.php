@@ -92,7 +92,7 @@ class Formatter
     }
 
     /**
-     * Passed date, such as 'i минут назад', 'через i минут', 'Сегодня в H:i', 'Вчера в H:i' or 'Завтра в H:i'.
+     * Passed date, such as 'X minutes ago', 'in X minutes', 'Today at H:i', 'Yesterday at H:i' or 'Tomorrow at H:i'.
      *
      * @param \DateTime $date
      * @param string $time_format
