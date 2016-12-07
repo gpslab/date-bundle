@@ -56,13 +56,14 @@ class ResponseListener
             $cookies = $event->getRequest()->cookies;
             $headers = $event->getResponse()->headers;
             $tz = $this->keeper->getUserTimeZone();
+            $offset = $tz->getOffset($this->keeper->getDefaultDateTime());
 
             if (
                 $cookies->get($this->tz_param_name) != $tz->getName() ||
-                $cookies->get($this->tz_param_offset) != $tz->getOffset(new \DateTime())
+                $cookies->get($this->tz_param_offset) != $offset
             ) {
                 $headers->setCookie($this->getCookie($this->tz_param_name, $tz->getName()));
-                $headers->setCookie($this->getCookie($this->tz_param_offset, $tz->getOffset(new \DateTime())));
+                $headers->setCookie($this->getCookie($this->tz_param_offset, $offset));
             }
         }
     }
