@@ -147,7 +147,7 @@ $comparator->compareYear(new \DateTime('2017-12-07'), '>', new \DateTime('2016-1
 
 ### Formatter
 
-`Formatter::format()` is override `\DateTime::format()` method. Available change translations for format chars
+`Formatter::format()` is equivalent `\DateTime::format()` method. Available change translations for format chars
 `D`, `l`, `M`, `F` and added custom format `f` for get month name in genitive.
 
 ```php
