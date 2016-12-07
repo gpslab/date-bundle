@@ -106,7 +106,6 @@ class Extension extends \Twig_Extension
         $month_format = Formatter::DEFAULT_PASSED_MONTH_FORMAT,
         $year_format = Formatter::DEFAULT_PASSED_YEAR_FORMAT
     ) {
-
         return $this->formatter->passed($this->convert($date), $time_format, $month_format, $year_format);
     }
 
