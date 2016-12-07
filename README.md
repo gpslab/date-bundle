@@ -225,6 +225,76 @@ Added functions for compare dates and times in Twig
 {{ compare_year($x, '>', $y) }}
 ```
 
+## TimeZone Keeper
+
+Timezone Keeper is a service for get default/system timezone and get user timezone and date from it.
+
+As a default used `ResolveAndKeep` timezone keeper, but you can override it and implement `KeeperInterface`. This
+service use `CollectionResolver` service for get all available timezone resolvers and use it for get user timezone.
+
+### Custom TimeZone resolver
+
+For add custom resolver you need create service and implement `ResolverInterface`. Example service for get timezone
+for authorized user:
+
+```php
+namespace Acme\Bundle\DemoBundle\Date\TimeZone\Resolver;
+
+class UserResolver implements ResolverInterface
+{
+    protected $storage;
+
+    public function __construct(TokenStorageInterface $storage)
+    {
+        $this->storage = $storage;
+    }
+
+    public function getUserTimeZone()
+    {
+        if (
+            ($token = $this->storage->getToken()) &&
+            ($user = $token->getUser()) &&
+            $user instanceof User &&
+            $user->getTimezone()
+        ) {
+            return new \DateTimeZone($user->getTimezone());
+        }
+
+        return null;
+    }
+}
+```
+
+Configure tagged service
+
+```yml
+services:
+    acme.demo.date.tz.resolver.user:
+        class: Acme\Bundle\DemoBundle\Date\TimeZone\Resolver\UserResolver
+        arguments: [ '@security.token_storage' ]
+        tags:
+            - { name: gpslab.date.tz.resolver, priority: 10 }
+        public: false
+```
+
+### How get it?
+
+How get timezone keeper from DI?
+
+```php
+$tz_keeper = $this->get('gpslab.date.tz.keeper');
+```
+
+### Parameters
+
+You can change DI parameter `%time_zone%` for change default timezone. As a default used timezone from
+[date_default_timezone_get()](http://php.net/manual/en/function.date-default-timezone-get.php).
+
+User timezone as a default stored in HTTP Cookies. DI parameter is store cookies var name:
+
+  * Parameter `%date.time_zone.param.name%` is var name for `\DateTimeZone::getName()`;
+  * Parameter `%date.time_zone.param.offset%` is var name for `\DateTimeZone::getOffset()`.
+
 ## License
 
 This bundle is under the [MIT license](http://opensource.org/licenses/MIT). See the complete license in the file: LICENSE
