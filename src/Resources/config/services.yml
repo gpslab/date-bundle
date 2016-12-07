@@ -23,7 +23,7 @@ services:
     # TimeZone utils
     gpslab.date.tz.keeper:
         class: GpsLab\Bundle\DateBundle\Date\TimeZone\Keeper\ResolveAndKeep
-        arguments: [ '@gpslab.date.tz.resolver.collection', '@gpslab.date.converter', '%time_zone%' ]
+        arguments: [ '@gpslab.date.tz.resolver.collection', '@gpslab.date.converter', '%date.time_zone%' ]
 
     gpslab.date.tz.resolver.collection:
         class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\CollectionResolver
