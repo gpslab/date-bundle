@@ -98,9 +98,9 @@ class FormatterTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                new \DateTime('-10 minutes'),
+                new \DateTime('-10 minutes -40 seconds'),
                 'passed.minutes_ago',
-                ['%minutes%' => 10],
+                ['%minutes%' => 11],
                 '10 минут назад',
             ],
             [
