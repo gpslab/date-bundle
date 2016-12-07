@@ -12,11 +12,10 @@ namespace GpsLab\Bundle\DateBundle;
 class Util
 {
     /**
-     * Get monday of this week.
-     *
-     * Bugfix:
+     * Bugfix for get monday of this week.
      *
      * @see https://bugs.php.net/bug.php?id=63740
+     * @codeCoverageIgnore
      *
      * @param \DateTime $date
      *
