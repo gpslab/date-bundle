@@ -76,6 +76,28 @@ $converter->getDateTime('first day of this month');
 $converter->getDateTime(1481108167); // Unix Timestamp for 2016-12-07 13:56:07
 ```
 
+### TimeZone Converter
+
+Sets the date of a user time zone
+
+```php
+// create new instance
+use GpsLab\Bundle\DateBundle\TimeZone\Converter;
+$converter = new Converter($tz_keeper);
+
+// you cat get TimeZone keeper from DI
+// $tz_keeper = $this->get('gpslab.date.tz.keeper');
+
+// for simple get the converter from DI
+$converter = $this->get('gpslab.date.tz.converter');
+
+// convert value to \DateTime
+$converter->getDateTime('2016-12-07 13:56:07');
+$converter->getDateTime('now');
+$converter->getDateTime('first day of this month');
+$converter->getDateTime(1481108167); // Unix Timestamp for 2016-12-07 13:56:07
+```
+
 ### Comparator
 
 ```php
@@ -83,7 +105,7 @@ $converter->getDateTime(1481108167); // Unix Timestamp for 2016-12-07 13:56:07
 use GpsLab\Bundle\DateBundle\Comparator;
 $comparator = new Comparator();
 
-// or get from DI
+// for simple get comparator from DI
 $comparator = $this->get('gpslab.date.comparator');
 
 // you can use the operator constants
@@ -92,6 +114,115 @@ $comparator->compareDate(new \DateTime('2016-12-07'), Comparator::EQ, new \DateT
 $comparator->compareDate(new \DateTime('2016-12-07'), '=', new \DateTime('2016-12-07')); // return true
 $comparator->compareWeek(new \DateTime('2016-12-05'), '<', new \DateTime('2016-12-10')); // return false
 $comparator->compareMonth(new \DateTime('2016-12-07'), '>=', new \DateTime('2016-12-14')); // return true
+```
+
+### TimeZone Comparator
+
+Sets the date of a user time zone
+
+```php
+// create new instance
+use GpsLab\Bundle\DateBundle\TimeZone\Comparator;
+$comparator = new Comparator($tz_keeper);
+
+// you cat get TimeZone keeper from DI
+// $tz_keeper = $this->get('gpslab.date.tz.keeper');
+
+// for simple get the comparator from DI
+$comparator = $this->get('gpslab.date.tz.comparator');
+
+// you can use the operator constants
+$comparator->compareDate(new \DateTime('2016-12-07'), Comparator::EQ, new \DateTime('2016-12-07')); // return true
+// or operator as string
+$comparator->compareDateTime(new \DateTime('2016-12-07'), '=', new \DateTime('2016-12-07')); // return true
+$comparator->compareDate(new \DateTime('2016-12-07'), '=', new \DateTime('2016-12-07')); // return true
+$comparator->compareTime(new \DateTime('2016-12-07'), '=', new \DateTime('2016-12-07')); // return true
+$comparator->compareWeek(new \DateTime('2016-12-05'), '<', new \DateTime('2016-12-10')); // return false
+$comparator->compareMonth(new \DateTime('2016-12-07'), '>=', new \DateTime('2016-12-14')); // return true
+$comparator->compareYear(new \DateTime('2017-12-07'), '>', new \DateTime('2016-12-07')); // return true
+```
+
+### Formatter
+
+`Formatter::format()` is override `\DateTime::format()` method. Available change translations for format chars
+`D`, `l`, `M`, `F` and added custom format `f` for get month name in genitive.
+
+```php
+// create new instance
+use GpsLab\Bundle\DateBundle\Formatter;
+$formatter = new Formatter($translator);
+
+// you cat get translator from DI in Symfony
+// $translator = $this->get('translator');
+
+// for simple get the formatter from DI
+$formatter = $this->get('gpslab.date.formatter');
+
+$date = new \DateTime('2016-07-20 14:06:32', new \DateTimeZone('Europe/Moscow'));
+
+$formatter->format($date, 'c'); // return '2016-07-20T14:06:32+03:00'
+$formatter->format($date, 'f'); // return 'Июля'
+$formatter->format($date, '\\\\U'); // return '\1469012792'
+$formatter->format($date, '\\\\\\U'); // return '\U'
+```
+
+`Formatter::passed()` method for get passed date from current date.
+
+```php
+// current date is '2016-12-07 15:27:44'
+
+// return '16 minutes ago'
+$formatter->passed(new \DateTime('2016-12-07 15:12:24'));
+// return 'In 3 minutes'
+$formatter->passed(new \DateTime('2016-12-07 15:30:44'));
+// return 'Today at 10:24'
+$formatter->passed(new \DateTime('2016-12-07 10:24:44'));
+// return 'Yesterday at 15:27'
+$formatter->passed(new \DateTime('2016-12-06 15:27:44'));
+// return 'Tomorrow at 15:27'
+$formatter->passed(new \DateTime('2016-12-08 15:27:44'));
+// return '24 January at 15:27'
+$formatter->passed(new \DateTime('2016-12-24 15:27:44'));
+// return '24 April 2016 at 15:27'
+$formatter->passed(new \DateTime('2016-04-07 15:27:44'));
+```
+
+In Russian
+
+```php
+// return '24 Января в 15:27'
+$formatter->passed(
+    new \DateTime('2016-12-24 15:27:44'),
+    Formatter::DEFAULT_PASSED_TIME_FORMAT,
+    'd f в H:i'
+);
+// return '24 Апреля 2016 в 15:27'
+$formatter->passed(
+    new \DateTime('2016-04-07 15:27:44'),
+    Formatter::DEFAULT_PASSED_TIME_FORMAT,
+    Formatter::DEFAULT_PASSED_MONTH_FORMAT,
+    'd f Y в H:i'
+);
+```
+
+## Twig extension
+
+`date` filter is overridden and use a `Formatter::format()`.
+
+```twig
+{# return 'Июля' #}
+{{ '2016-07-20' | date('f') }}
+```
+
+Added functions for compare dates and times in Twig
+
+```twig
+{{ compare_date_time($x, '>', $y) }}
+{{ compare_date($x, '>', $y) }}
+{{ compare_time($x, '>', $y) }}
+{{ compare_week($x, '>', $y) }}
+{{ compare_month($x, '>', $y) }}
+{{ compare_year($x, '>', $y) }}
 ```
 
 ## License
