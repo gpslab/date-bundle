@@ -10,7 +10,7 @@
 namespace GpsLab\Bundle\DateBundle\TimeZone\Keeper;
 
 use GpsLab\Bundle\DateBundle\Converter;
-use GpsLab\Bundle\DateBundle\TimeZone\Resolver\ChainResolver;
+use GpsLab\Bundle\DateBundle\TimeZone\Resolver\CollectionResolver;
 
 class ResolveAndKeep implements KeeperInterface
 {
@@ -25,9 +25,9 @@ class ResolveAndKeep implements KeeperInterface
     protected $user_time_zone;
 
     /**
-     * @var ChainResolver
+     * @var CollectionResolver
      */
-    protected $resolver;
+    protected $collection;
 
     /**
      * @var Converter
@@ -35,13 +35,13 @@ class ResolveAndKeep implements KeeperInterface
     protected $converter;
 
     /**
-     * @param ChainResolver $resolver
+     * @param CollectionResolver $collection
      * @param Converter $converter
      * @param string|null $time_zone
      */
-    public function __construct(ChainResolver $resolver, Converter $converter, $time_zone = null)
+    public function __construct(CollectionResolver $collection, Converter $converter, $time_zone = null)
     {
-        $this->resolver = $resolver;
+        $this->collection = $collection;
         $this->converter = $converter;
         $this->default_time_zone = new \DateTimeZone($time_zone ?: date_default_timezone_get());
     }
@@ -61,7 +61,7 @@ class ResolveAndKeep implements KeeperInterface
     {
         if (!($this->user_time_zone instanceof \DateTimeZone)) {
             // try resolve user TZ
-            foreach ($this->resolver->getResolvers() as $resolver) {
+            foreach ($this->collection->getResolvers() as $resolver) {
                 $tz = $resolver->getUserTimeZone();
                 if ($tz instanceof \DateTimeZone) {
                     $this->user_time_zone = $tz;

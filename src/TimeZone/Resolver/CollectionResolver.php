@@ -9,7 +9,7 @@
 
 namespace GpsLab\Bundle\DateBundle\TimeZone\Resolver;
 
-class ChainResolver
+class CollectionResolver
 {
     /**
      * @var ResolverInterface[]

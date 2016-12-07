@@ -20,7 +20,7 @@ class TimeZoneResolverPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has('gpslab.date.tz.resolver')) {
+        if (!$container->has('gpslab.date.tz.resolver.collection')) {
             return;
         }
 
@@ -36,7 +36,7 @@ class TimeZoneResolverPass implements CompilerPassInterface
             return $this->sort($a, $b);
         });
 
-        $definition = $container->findDefinition('gpslab.date.tz.resolver');
+        $definition = $container->findDefinition('gpslab.date.tz.resolver.collection');
         foreach ($resolvers as $resolver) {
             $definition->addMethodCall('addResolver', [new Reference($resolver['id'])]);
         }
