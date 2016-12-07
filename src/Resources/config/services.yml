@@ -5,9 +5,6 @@ services:
     gpslab.date.converter:
         class: GpsLab\Bundle\DateBundle\Date\Converter
 
-    gpslab.date.util:
-        class: GpsLab\Bundle\DateBundle\Date\Util
-
     gpslab.date.formatter:
         class: GpsLab\Bundle\DateBundle\Date\Formatter
         arguments: [ '@translator' ]
