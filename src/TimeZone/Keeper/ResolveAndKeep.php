@@ -37,9 +37,9 @@ class ResolveAndKeep implements KeeperInterface
     /**
      * @param ChainResolver $resolver
      * @param Converter $converter
-     * @param string $time_zone
+     * @param string|null $time_zone
      */
-    public function __construct(ChainResolver $resolver, Converter $converter, $time_zone)
+    public function __construct(ChainResolver $resolver, Converter $converter, $time_zone = null)
     {
         $this->resolver = $resolver;
         $this->converter = $converter;

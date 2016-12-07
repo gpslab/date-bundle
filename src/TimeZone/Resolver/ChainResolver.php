@@ -19,7 +19,7 @@ class ChainResolver
     /**
      * @param ResolverInterface $resolver
      *
-     * @return ChainResolver
+     * @return self
      */
     public function addResolver(ResolverInterface $resolver)
     {
