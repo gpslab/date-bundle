@@ -62,7 +62,8 @@ class ResolveAndKeep implements KeeperInterface
         if (!($this->user_time_zone instanceof \DateTimeZone)) {
             // try resolve user TZ
             foreach ($this->resolver->getResolvers() as $resolver) {
-                if ($tz = $resolver->getUserTimeZone()) {
+                $tz = $resolver->getUserTimeZone();
+                if ($tz instanceof \DateTimeZone) {
                     $this->user_time_zone = $tz;
                     break;
                 }

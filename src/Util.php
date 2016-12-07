@@ -15,7 +15,6 @@ class Util
      * Bugfix for get monday of this week.
      *
      * @see https://bugs.php.net/bug.php?id=63740
-     * @codeCoverageIgnore
      *
      * @param \DateTime $date
      *
