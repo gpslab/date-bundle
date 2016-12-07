@@ -18,13 +18,11 @@ class Converter
      */
     public function getDateTime($date)
     {
-        if ($date instanceof \DateTime) {
-            // not need convert
-        } elseif ($date instanceof \DateTimeInterface) {
+        if ($date instanceof \DateTimeInterface) {
             $date = new \DateTime($date->format(\DateTime::ISO8601));
         } elseif (is_numeric($date)) { // is UTS
             $date = (new \DateTime())->setTimestamp($date);
-        } else {
+        } elseif ($date instanceof \DateTime) {
             $date = new \DateTime($date);
         }
 
