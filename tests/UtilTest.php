@@ -66,9 +66,6 @@ class UtilTest extends \PHPUnit_Framework_TestCase
      */
     public function testRoundDate($date, $seconds, $expected)
     {
-        $this->assertEquals(
-            (new \DateTime($expected))->format(\DateTime::ISO8601),
-            Util::roundDate(new \DateTime($date), $seconds)->format(\DateTime::ISO8601)
-        );
+        $this->assertEquals($expected, Util::roundDate(new \DateTime($date), $seconds)->format('H:i:s'));
     }
 }
