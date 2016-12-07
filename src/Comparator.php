@@ -9,6 +9,8 @@
 
 namespace GpsLab\Bundle\DateBundle;
 
+use GpsLab\Bundle\DateBundle\Exception\InvalidCompareOperatorException;
+
 class Comparator
 {
     const EQ = '=';
@@ -59,7 +61,7 @@ class Comparator
             case self::LTE:
                 return $x <= $y;
             default:
-                throw new \InvalidArgumentException(sprintf('Operator "%s" is not supported.', $operator));
+                throw InvalidCompareOperatorException::create($operator);
         }
     }
 
