@@ -26,6 +26,17 @@ class Formatter
     protected $translator;
 
     /**
+     * @var array
+     */
+    protected $trans_format = [
+        'f' => ['F', 'month.genitive.%s'],
+        'D' => ['l', 'weekday.short.%s'],
+        'l' => ['l', 'weekday.long.%s'],
+        'F' => ['F', 'month.long.%s'],
+        'M' => ['F', 'month.short.%s'],
+    ];
+
+    /**
      * @param TranslatorInterface $translator
      */
     public function __construct(TranslatorInterface $translator)
@@ -60,32 +71,19 @@ class Formatter
                     $result .= $char;
                 }
                 $escape = !$escape;
-            } elseif ($escape) { // escaped character
-                $result .= $char;
-                $escape = false;
-            } else {
-                switch ($char) {
-                    case 'f':
-                        $result .= $this->trans('month.genitive.'.strtolower($date->format('F')));
-                        break;
-                    case 'D':
-                        $result .= $this->trans('weekday.short.'.strtolower($date->format('l')));
-                        break;
-                    case 'l':
-                        $result .= $this->trans('weekday.long.'.strtolower($date->format('l')));
-                        break;
-                    case 'F':
-                        $result .= $this->trans('month.long.'.strtolower($date->format('F')));
-                        break;
-                    case 'M':
-                        $result .= $this->trans('month.short.'.strtolower($date->format('F')));
-                        break;
-                    default:
-                        $result .= $date->format($char);
-                }
-
-                $escape = false;
+                continue;
             }
+
+            if ($escape) { // escaped character
+                $result .= $char;
+            } elseif (isset($this->trans_format[$char])) {
+                list($trans, $char) = $this->trans_format[$char];
+                $result .= $this->trans(sprintf($trans, strtolower($date->format($char))));
+            } else {
+                $result .= $date->format($char);
+            }
+
+            $escape = false;
         }
 
         return $result;
