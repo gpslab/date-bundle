@@ -104,6 +104,30 @@ class Comparator
     }
 
     /**
+     * @param \DateTime $x
+     * @param string $operator
+     * @param \DateTime $y
+     *
+     * @return bool
+     */
+    public function compareMonth(\DateTime $x, $operator, \DateTime $y)
+    {
+        return $this->compareDateTime($this->resetMonth($x), $operator, $this->resetMonth($y));
+    }
+
+    /**
+     * @param \DateTime $x
+     * @param string $operator
+     * @param \DateTime $y
+     *
+     * @return bool
+     */
+    public function compareYear(\DateTime $x, $operator, \DateTime $y)
+    {
+        return $this->compareDateTime($this->resetYear($x), $operator, $this->resetYear($y));
+    }
+
+    /**
      * @param \DateTime $date
      *
      * @return \DateTime
@@ -137,5 +161,31 @@ class Comparator
     protected function resetWeek(\DateTime $date)
     {
         return Util::getMondayThisWeek($date)->setTime(0, 0, 0);
+    }
+
+    /**
+     * @param \DateTime $date
+     *
+     * @return \DateTime
+     */
+    protected function resetMonth(\DateTime $date)
+    {
+        $date = clone $date;
+        $date->modify('first day of this month')->setTime(0, 0, 0);
+
+        return $date;
+    }
+
+    /**
+     * @param \DateTime $date
+     *
+     * @return \DateTime
+     */
+    protected function resetYear(\DateTime $date)
+    {
+        $date = clone $date;
+        $date->modify('first day of this year')->setTime(0, 0, 0);
+
+        return $date;
     }
 }

@@ -96,6 +96,30 @@ class Comparator extends DateComparator
     }
 
     /**
+     * @param \DateTime $x
+     * @param string $operator
+     * @param \DateTime $y
+     *
+     * @return bool
+     */
+    public function compareMonth(\DateTime $x, $operator, \DateTime $y)
+    {
+        return parent::compareMonth($this->resetTimezone($x), $operator, $this->resetTimezone($y));
+    }
+
+    /**
+     * @param \DateTime $x
+     * @param string $operator
+     * @param \DateTime $y
+     *
+     * @return bool
+     */
+    public function compareYear(\DateTime $x, $operator, \DateTime $y)
+    {
+        return parent::compareYear($this->resetTimezone($x), $operator, $this->resetTimezone($y));
+    }
+
+    /**
      * @param \DateTime $date
      *
      * @return \DateTime

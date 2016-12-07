@@ -63,6 +63,8 @@ class Extension extends \Twig_Extension
             new \Twig_SimpleFunction('compare_date', [$this, 'getCompareDate']),
             new \Twig_SimpleFunction('compare_time', [$this, 'getCompareTime']),
             new \Twig_SimpleFunction('compare_week', [$this, 'getCompareWeek']),
+            new \Twig_SimpleFunction('compare_month', [$this, 'getCompareMonth']),
+            new \Twig_SimpleFunction('compare_year', [$this, 'getCompareYear']),
         ];
     }
 
@@ -85,9 +87,7 @@ class Extension extends \Twig_Extension
             return $date->format($format);
         }
 
-        $date = $this->converter->getDateTime($date);
-
-        return $this->formatter->format($date, $format);
+        return $this->formatter->format($this->convert($date), $format);
     }
 
     /**
@@ -104,9 +104,8 @@ class Extension extends \Twig_Extension
         $month_format = Formatter::DEFAULT_PASSED_MONTH_FORMAT,
         $year_format = Formatter::DEFAULT_PASSED_YEAR_FORMAT
     ) {
-        $date = $this->converter->getDateTime($date);
 
-        return $this->formatter->passed($date, $time_format, $month_format, $year_format);
+        return $this->formatter->passed($this->convert($date), $time_format, $month_format, $year_format);
     }
 
     /**
@@ -118,11 +117,7 @@ class Extension extends \Twig_Extension
      */
     public function getCompareDateTime($x, $operator, $y)
     {
-        return $this->comparator->compareDateTime(
-            $this->converter->getDateTime($x),
-            $operator,
-            $this->converter->getDateTime($y)
-        );
+        return $this->comparator->compareDateTime($this->convert($x), $operator, $this->convert($y));
     }
 
     /**
@@ -134,11 +129,7 @@ class Extension extends \Twig_Extension
      */
     public function getCompareDate($x, $operator, $y)
     {
-        return $this->comparator->compareDate(
-            $this->converter->getDateTime($x),
-            $operator,
-            $this->converter->getDateTime($y)
-        );
+        return $this->comparator->compareDate($this->convert($x), $operator, $this->convert($y));
     }
 
     /**
@@ -150,11 +141,7 @@ class Extension extends \Twig_Extension
      */
     public function getCompareTime($x, $operator, $y)
     {
-        return $this->comparator->compareTime(
-            $this->converter->getDateTime($x),
-            $operator,
-            $this->converter->getDateTime($y)
-        );
+        return $this->comparator->compareTime($this->convert($x), $operator, $this->convert($y));
     }
 
     /**
@@ -166,11 +153,41 @@ class Extension extends \Twig_Extension
      */
     public function getCompareWeek($x, $operator, $y)
     {
-        return $this->comparator->compareWeek(
-            $this->converter->getDateTime($x),
-            $operator,
-            $this->converter->getDateTime($y)
-        );
+        return $this->comparator->compareWeek($this->convert($x), $operator, $this->convert($y));
+    }
+
+    /**
+     * @param mixed $x
+     * @param string $operator
+     * @param mixed $y
+     *
+     * @return bool
+     */
+    public function getCompareMonth($x, $operator, $y)
+    {
+        return $this->comparator->compareMonth($this->convert($x), $operator, $this->convert($y));
+    }
+
+    /**
+     * @param mixed $x
+     * @param string $operator
+     * @param mixed $y
+     *
+     * @return bool
+     */
+    public function getCompareYear($x, $operator, $y)
+    {
+        return $this->comparator->compareYear($this->convert($x), $operator, $this->convert($y));
+    }
+
+    /**
+     * @param \DateTime $date
+     *
+     * @return \DateTime
+     */
+    private function convert(\DateTime $date)
+    {
+        return $this->converter->getDateTime($date);
     }
 
     /**
