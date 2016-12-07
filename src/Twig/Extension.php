@@ -78,7 +78,9 @@ class Extension extends \Twig_Extension
     public function getDateFormat(\Twig_Environment $env, $date, $format = null)
     {
         if ($format === null) {
-            $formats = $env->getExtension('core')->getDateFormat();
+            /* @var $core \Twig_Extension_Core */
+            $core = $env->getExtension('core');
+            $formats = $core->getDateFormat();
             $format = $date instanceof \DateInterval ? $formats[1] : $formats[0];
         }
 
@@ -181,11 +183,11 @@ class Extension extends \Twig_Extension
     }
 
     /**
-     * @param \DateTime $date
+     * @param mixed $date
      *
      * @return \DateTime
      */
-    private function convert(\DateTime $date)
+    private function convert($date)
     {
         return $this->converter->getDateTime($date);
     }
