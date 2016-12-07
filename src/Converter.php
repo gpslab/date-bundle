@@ -22,7 +22,7 @@ class Converter
             $date = new \DateTime($date->format(\DateTime::ISO8601));
         } elseif (is_numeric($date)) { // is UTS
             $date = (new \DateTime())->setTimestamp($date);
-        } elseif ($date instanceof \DateTime) {
+        } elseif (!($date instanceof \DateTime)) {
             $date = new \DateTime($date);
         }
 
