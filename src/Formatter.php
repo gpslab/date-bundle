@@ -90,7 +90,7 @@ class Formatter
     }
 
     /**
-     * Passed date, such as 'X minutes ago', 'in X minutes', 'Today at H:i', 'Yesterday at H:i' or 'Tomorrow at H:i'.
+     * Passed date, such as 'X minutes ago', 'In X minutes', 'Today at X', 'Yesterday at X' or 'Tomorrow at X'.
      *
      * @param \DateTime $date
      * @param string $time_format
