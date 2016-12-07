@@ -46,7 +46,7 @@ class ResponseListener
     }
 
     /**
-     * Save user time zone
+     * Save user time zone.
      *
      * @param FilterResponseEvent $event
      */
