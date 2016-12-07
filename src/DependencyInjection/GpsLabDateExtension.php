@@ -21,8 +21,9 @@ class GpsLabDateExtension extends Extension
         $config = $this->processConfiguration(new Configuration(), $configs);
 
         $container->setParameter('date.time_zone', $config['time_zone']);
-        $container->setParameter('date.time_zone.param.name', $config['cookie']['name']);
-        $container->setParameter('date.time_zone.param.offset', $config['cookie']['offset']);
+        $container->setParameter('date.time_zone.cookie.used', $config['cookie']['used']);
+        $container->setParameter('date.time_zone.cookie.param.name', $config['cookie']['name']);
+        $container->setParameter('date.time_zone.cookie.param.offset', $config['cookie']['offset']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

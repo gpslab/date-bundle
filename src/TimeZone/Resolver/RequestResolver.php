@@ -16,21 +16,28 @@ class RequestResolver implements ResolverInterface
     /**
      * @var RequestStack
      */
-    protected $request_stack;
+    private $request_stack;
+
+    /**
+     * @var bool
+     */
+    private $cookie_used = true;
 
     /**
      * @var string
      */
-    protected $time_zone_param = '';
+    private $cookie_param_name = '';
 
     /**
      * @param RequestStack $request_stack
-     * @param string $time_zone_param
+     * @param bool $cookie_used
+     * @param string $cookie_param_name
      */
-    public function __construct(RequestStack $request_stack, $time_zone_param)
+    public function __construct(RequestStack $request_stack, $cookie_used, $cookie_param_name)
     {
         $this->request_stack = $request_stack;
-        $this->time_zone_param = $time_zone_param;
+        $this->cookie_used = $cookie_used;
+        $this->cookie_param_name = $cookie_param_name;
     }
 
     /**
@@ -38,7 +45,11 @@ class RequestResolver implements ResolverInterface
      */
     public function getUserTimeZone()
     {
-        $time_zone = $this->request_stack->getMasterRequest()->cookies->get($this->time_zone_param);
+        if (!$this->cookie_used) {
+            return null;
+        }
+
+        $time_zone = $this->request_stack->getMasterRequest()->cookies->get($this->cookie_param_name);
 
         if (in_array($time_zone, \DateTimeZone::listIdentifiers())) {
             return new \DateTimeZone($time_zone);

@@ -14,7 +14,7 @@ class ConsoleResolver implements ResolverInterface
     /**
      * @var \DateTimeZone
      */
-    protected $default_time_zone;
+    private $default_time_zone;
 
     /**
      * @param string $time_zone

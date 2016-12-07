@@ -38,7 +38,10 @@ services:
 
     gpslab.date.tz.resolver.request:
         class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\RequestResolver
-        arguments: [ '@request_stack', '%date.time_zone.param.name%' ]
+        arguments:
+            - '@request_stack'
+            - '%date.time_zone.cookie.used%'
+            - '%date.time_zone.cookie.param.name%'
         tags:
             - { name: gpslab.date.tz.resolver, priority: 1000 }
         public: false
@@ -55,4 +58,8 @@ services:
         class: GpsLab\Bundle\DateBundle\Event\Listener\ResponseListener
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponseSaveUserTimeZone }
-        arguments: [ '@gpslab.date.tz.keeper', '%date.time_zone.param.name%', '%date.time_zone.param.offset%' ]
+        arguments:
+            - '@gpslab.date.tz.keeper'
+            - '%date.time_zone.cookie.used%'
+            - '%date.time_zone.cookie.param.name%'
+            - '%date.time_zone.cookie.param.offset%'

@@ -18,31 +18,35 @@ class ResponseListener
     /**
      * @var KeeperInterface
      */
-    protected $keeper;
+    private $keeper;
+
+    /**
+     * @var bool
+     */
+    private $cookie_used = true;
 
     /**
      * @var string
      */
-    protected $tz_param_name = '';
+    private $cookie_param_name = '';
 
     /**
      * @var string
      */
-    protected $tz_param_offset = '';
+    private $cookie_param_offset = '';
 
     /**
      * @param KeeperInterface $tz_keeper
-     * @param string $tz_param_name
-     * @param string $tz_param_offset
+     * @param bool $cookie_used
+     * @param string $cookie_param_name
+     * @param string $cookie_param_offset
      */
-    public function __construct(
-        KeeperInterface $tz_keeper,
-        $tz_param_name,
-        $tz_param_offset
-    ) {
+    public function __construct(KeeperInterface $tz_keeper, $cookie_used, $cookie_param_name, $cookie_param_offset)
+    {
         $this->keeper = $tz_keeper;
-        $this->tz_param_name = $tz_param_name;
-        $this->tz_param_offset = $tz_param_offset;
+        $this->cookie_used = $cookie_used;
+        $this->cookie_param_name = $cookie_param_name;
+        $this->cookie_param_offset = $cookie_param_offset;
     }
 
     /**
@@ -52,18 +56,18 @@ class ResponseListener
      */
     public function onKernelResponseSaveUserTimeZone(FilterResponseEvent $event)
     {
-        if ($event->isMasterRequest()) {
+        if ($this->cookie_used && $event->isMasterRequest()) {
             $cookies = $event->getRequest()->cookies;
             $headers = $event->getResponse()->headers;
             $tz = $this->keeper->getUserTimeZone();
             $offset = $tz->getOffset($this->keeper->getDefaultDateTime());
 
             if (
-                $cookies->get($this->tz_param_name) != $tz->getName() ||
-                $cookies->get($this->tz_param_offset) != $offset
+                $cookies->get($this->cookie_param_name) != $tz->getName() ||
+                $cookies->get($this->cookie_param_offset) != $offset
             ) {
-                $headers->setCookie($this->getCookie($this->tz_param_name, $tz->getName()));
-                $headers->setCookie($this->getCookie($this->tz_param_offset, $offset));
+                $headers->setCookie($this->getCookie($this->cookie_param_name, $tz->getName()));
+                $headers->setCookie($this->getCookie($this->cookie_param_offset, $offset));
             }
         }
     }

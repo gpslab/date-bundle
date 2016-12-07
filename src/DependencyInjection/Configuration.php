@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
      * gps_lab_date:
      *     time_zone: 'Europe/Moscow'
      *     cookie:
+     *         used: true
      *         name: '_time_zone_name'
      *         offset: '_time_zone_offset'
      *
@@ -37,6 +38,9 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('cookie')
                     ->children()
+                        ->scalarNode('used')
+                            ->defaultValue(true)
+                        ->end()
                         ->scalarNode('name')
                             ->cannotBeEmpty()
                             ->defaultValue('_time_zone_name')
