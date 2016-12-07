@@ -33,6 +33,21 @@ public function registerBundles()
 }
 ```
 
+## Configuration
+
+```yml
+gps_lab_date:
+    # Is not required
+    # As a default uset timezone from date_default_timezone_get()
+    time_zone: 'Europe/Moscow'
+
+    # HTTP Cookie var names for store user timezone
+    # It's a default values
+    cookie:
+        name: '_time_zone_name'
+        offset: '_time_zone_offset'
+```
+
 ## Usage
 
 ### Util
@@ -287,16 +302,6 @@ How get timezone keeper from DI?
 ```php
 $tz_keeper = $this->get('gpslab.date.tz.keeper');
 ```
-
-### Parameters
-
-You can change DI parameter `%time_zone%` for change default timezone. As a default used timezone from
-[date_default_timezone_get()](http://php.net/manual/en/function.date-default-timezone-get.php).
-
-User timezone as a default stored in HTTP Cookies. DI parameter is store cookies var name:
-
-  * Parameter `%date.time_zone.param.name%` is var name for `\DateTimeZone::getName()`;
-  * Parameter `%date.time_zone.param.offset%` is var name for `\DateTimeZone::getOffset()`.
 
 ## License
 

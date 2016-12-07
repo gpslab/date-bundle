@@ -18,8 +18,13 @@ class GpsLabDateExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
+        $container->setParameter('date.time_zone', $config['time_zone']);
+        $container->setParameter('date.time_zone.param.name', $config['cookie']['name']);
+        $container->setParameter('date.time_zone.param.offset', $config['cookie']['offset']);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('parameters.yml');
         $loader->load('services.yml');
     }
 }
