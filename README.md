@@ -76,6 +76,24 @@ $converter->getDateTime('first day of this month');
 $converter->getDateTime(1481108167); // Unix Timestamp for 2016-12-07 13:56:07
 ```
 
+### Comparator
+
+```php
+// create new instance
+use GpsLab\Bundle\DateBundle\Comparator;
+$comparator = new Comparator();
+
+// or get from DI
+$comparator = $this->get('gpslab.date.comparator');
+
+// you can use the operator constants
+$comparator->compareDate(new \DateTime('2016-12-07'), Comparator::EQ, new \DateTime('2016-12-07')); // return true
+// or operator as string
+$comparator->compareDate(new \DateTime('2016-12-07'), '=', new \DateTime('2016-12-07')); // return true
+$comparator->compareWeek(new \DateTime('2016-12-05'), '<', new \DateTime('2016-12-10')); // return false
+$comparator->compareMonth(new \DateTime('2016-12-07'), '>=', new \DateTime('2016-12-14')); // return true
+```
+
 ## License
 
 This bundle is under the [MIT license](http://opensource.org/licenses/MIT). See the complete license in the file: LICENSE
