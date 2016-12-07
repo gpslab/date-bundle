@@ -77,7 +77,7 @@ class Formatter
             if ($escape) { // escaped character
                 $result .= $char;
             } elseif (isset($this->trans_format[$char])) {
-                list($trans, $char) = $this->trans_format[$char];
+                list($char, $trans) = $this->trans_format[$char];
                 $result .= $this->trans(sprintf($trans, strtolower($date->format($char))));
             } else {
                 $result .= $date->format($char);
