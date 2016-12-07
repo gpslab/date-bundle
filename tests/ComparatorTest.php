@@ -16,7 +16,7 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @var Comparator
      */
-    private $comparator;
+    protected $comparator;
 
     protected function setUp()
     {
