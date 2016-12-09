@@ -1,4 +1,5 @@
-# Configuration
+Configuration
+=============
 
 ```yml
 gps_lab_date:

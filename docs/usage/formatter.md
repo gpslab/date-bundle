@@ -1,4 +1,7 @@
-# Formatter
+Formatter
+=========
+
+## Translate DateTime format
 
 `Formatter::format()` is equivalent `\DateTime::format()` method. Available change translations for format chars
 `D`, `l`, `M`, `F` and added custom format `f` for get month name in genitive.
@@ -21,6 +24,8 @@ $formatter->format($date, 'f'); // return 'Июля'
 $formatter->format($date, '\\\\U'); // return '\1469012792'
 $formatter->format($date, '\\\\\\U'); // return '\U'
 ```
+
+## How much time has passed
 
 `Formatter::passed()` method for get passed date from current date.
 

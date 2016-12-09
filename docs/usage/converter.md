@@ -1,4 +1,5 @@
-# Converter
+Converter
+=========
 
 ```php
 // create new instance

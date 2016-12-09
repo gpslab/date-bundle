@@ -1,4 +1,5 @@
-# TimeZone Keeper
+Timezone Keeper
+===============
 
 Timezone Keeper is a service for get default/system timezone and get user timezone and date from it.
 

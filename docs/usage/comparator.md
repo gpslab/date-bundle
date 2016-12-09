@@ -1,4 +1,5 @@
-# Comparator
+Comparator
+==========
 
 ```php
 // create new instance

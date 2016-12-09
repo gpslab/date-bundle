@@ -1,4 +1,5 @@
-# TimeZone Converter
+Timezone Converter
+==================
 
 Sets the date of a user time zone
 

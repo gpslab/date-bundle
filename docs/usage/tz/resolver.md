@@ -1,4 +1,5 @@
-# Custom timezone resolver
+Custom timezone resolver
+========================
 
 For add custom user timezone resolver you need create service and implement `ResolverInterface`. Example service for get timezone
 for authorized user:

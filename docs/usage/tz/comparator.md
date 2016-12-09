@@ -1,4 +1,5 @@
-# TimeZone Comparator
+Timezone Comparator
+===================
 
 Sets the date of a user time zone
 
