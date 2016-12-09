@@ -34,7 +34,7 @@ before_install:
 
 before_script:
     - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --dev --no-update; fi;
-    - composer installl --prefer-dist --no-interaction --no-scripts --no-progress
+    - composer install --prefer-dist --no-interaction --no-scripts --no-progress
 
 script:
     - vendor/bin/phpunit
