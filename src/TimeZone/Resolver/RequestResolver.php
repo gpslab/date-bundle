@@ -51,10 +51,10 @@ class RequestResolver implements ResolverInterface
 
         $time_zone = $this->request_stack->getMasterRequest()->cookies->get($this->cookie_param_name);
 
-        if (in_array($time_zone, \DateTimeZone::listIdentifiers())) {
+        try { // \DateTimeZone::listIdentifiers() not return Etc/GMT-6 and etc.
             return new \DateTimeZone($time_zone);
+        } catch (\Exception $e) {
+            return null;
         }
-
-        return null;
     }
 }
