@@ -162,7 +162,10 @@ class Comparator
      */
     protected function resetWeek(\DateTime $date)
     {
-        return Util::getMondayThisWeek($date)->setTime(0, 0, 0);
+        $date = clone $date;
+        $date->modify('Monday this week')->setTime(0, 0, 0);
+
+        return $date;
     }
 
     /**
