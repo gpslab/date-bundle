@@ -28,4 +28,12 @@ class GpsLabDateExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
+
+    /**
+     * @return string
+     */
+    public function getAlias()
+    {
+        return 'gpslab_date';
+    }
 }

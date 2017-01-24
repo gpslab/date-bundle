@@ -2,7 +2,7 @@ Configuration
 =============
 
 ```yml
-gps_lab_date:
+gpslab_date:
     # Is not required
     # As a default uset timezone from date_default_timezone_get()
     time_zone: 'Europe/Moscow'

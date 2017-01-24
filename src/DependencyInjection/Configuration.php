@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
      *
      * Example config:
      *
-     * gps_lab_date:
+     * gpslab_date:
      *     time_zone: 'Europe/Moscow'
      *     cookie:
      *         used: true
@@ -31,7 +31,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         return (new TreeBuilder())
-            ->root('gps_lab_date')
+            ->root('gpslab_date')
             ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('time_zone')

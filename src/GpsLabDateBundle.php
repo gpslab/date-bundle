@@ -10,14 +10,36 @@
 namespace GpsLab\Bundle\DateBundle;
 
 use GpsLab\Bundle\DateBundle\DependencyInjection\Compiler\TimeZoneResolverPass;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class GpsLabDateBundle extends Bundle
 {
+    /**
+     * @param ContainerBuilder $container
+     */
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
         $container->addCompilerPass(new TimeZoneResolverPass());
+    }
+
+    /**
+     * @return ExtensionInterface|bool
+     */
+    public function getContainerExtension()
+    {
+        if (null === $this->extension) {
+            $extension = $this->createContainerExtension();
+
+            if ($extension instanceof ExtensionInterface) {
+                $this->extension = $extension;
+            } else {
+                $this->extension = false;
+            }
+        }
+
+        return $this->extension;
     }
 }
