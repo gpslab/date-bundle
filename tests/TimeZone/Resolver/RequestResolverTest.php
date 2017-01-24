@@ -81,7 +81,7 @@ class RequestResolverTest extends \PHPUnit_Framework_TestCase
     public function testGetUserTimeZone($expected, $actual)
     {
         $request = new Request([], [], [], [
-            $this->cookie_param_name => $actual
+            $this->cookie_param_name => $actual,
         ]);
 
         $this->request_stack
