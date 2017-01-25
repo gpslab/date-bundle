@@ -33,7 +33,7 @@ services:
         class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\ConsoleResolver
         arguments: [ '%date.time_zone%' ]
         tags:
-            - { name: gpslab.date.tz.resolver, priority: 900 }
+            - { name: gpslab.date.tz.resolver, priority: 1 }
         public: false
 
     gpslab.date.tz.resolver.request:
