@@ -32,6 +32,10 @@ class Util
     }
 
     /**
+     * @deprecated it will be removed in later.
+     *
+     * @see RoundDate::round()
+     *
      * @param \DateTime $date
      * @param int $seconds
      *
@@ -39,8 +43,6 @@ class Util
      */
     public static function roundDate(\DateTime $date, $seconds)
     {
-        $date = clone $date;
-
-        return $date->setTimestamp(round($date->getTimestamp() / $seconds) * $seconds);
+        return RoundDate::round($date, $seconds);
     }
 }
