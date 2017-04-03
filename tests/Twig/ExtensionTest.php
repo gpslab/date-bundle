@@ -136,17 +136,8 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
             '%Y %M %D %H %I %S %R',
         ];
 
-        /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Extension_Core */
-        $core = $this
-            ->getMockBuilder(\Twig_Extension_Core::class)
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-        $core
-            ->expects($this->once())
-            ->method('getDateFormat')
-            ->will($this->returnValue($formats))
-        ;
+        $core = new \Twig_Extension_Core();
+        $core->setDateFormat($formats[0], $formats[1]);
 
         /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Environment */
         $env = $this
@@ -200,17 +191,8 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
             '%Y %M %D %H %I %S %R',
         ];
 
-        /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Extension_Core */
-        $core = $this
-            ->getMockBuilder(\Twig_Extension_Core::class)
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-        $core
-            ->expects($this->once())
-            ->method('getDateFormat')
-            ->will($this->returnValue($formats))
-        ;
+        $core = new \Twig_Extension_Core();
+        $core->setDateFormat($formats[0], $formats[1]);
 
         /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Environment */
         $env = $this
