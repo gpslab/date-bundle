@@ -30,7 +30,6 @@ class RoundDate
      */
     public static function floor(\DateTime $date, $seconds)
     {
-
         return self::setTimestamp($date, floor($date->getTimestamp() / $seconds) * $seconds);
     }
 
