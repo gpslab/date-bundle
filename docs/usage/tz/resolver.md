@@ -22,7 +22,7 @@ class UserResolver implements ResolverInterface
 
     public function getUserTimeZone()
     {
-        //
+        // get timezone from user entity
         if (
             ($token = $this->storage->getToken()) &&
             ($user = $token->getUser()) &&
