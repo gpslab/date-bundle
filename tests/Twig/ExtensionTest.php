@@ -118,7 +118,11 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
     public function testGetDateFormatDateIntervalFromFormat()
     {
         /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Environment */
-        $env = $this->getMock(\Twig_Environment::class);
+        $env = $this
+            ->getMockBuilder(\Twig_Environment::class)
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
         $date = new \DateInterval('P2Y4DT6H8M');
         $format = '%Y %M %D %H %I %S %R';
 
@@ -133,7 +137,11 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         ];
 
         /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Extension_Core */
-        $core = $this->getMock(\Twig_Extension_Core::class);
+        $core = $this
+            ->getMockBuilder(\Twig_Extension_Core::class)
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
         $core
             ->expects($this->once())
             ->method('getDateFormat')
@@ -141,7 +149,11 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         ;
 
         /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Environment */
-        $env = $this->getMock(\Twig_Environment::class);
+        $env = $this
+            ->getMockBuilder(\Twig_Environment::class)
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
         $env
             ->expects($this->once())
             ->method('getExtension')
@@ -156,7 +168,11 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
     public function testGetDateFormatFromFormat()
     {
         /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Environment */
-        $env = $this->getMock(\Twig_Environment::class);
+        $env = $this
+            ->getMockBuilder(\Twig_Environment::class)
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
         $date = new \DateTime();
         $format = 'Y-m-d H:i:s';
 
@@ -185,7 +201,11 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         ];
 
         /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Extension_Core */
-        $core = $this->getMock(\Twig_Extension_Core::class);
+        $core = $this
+            ->getMockBuilder(\Twig_Extension_Core::class)
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
         $core
             ->expects($this->once())
             ->method('getDateFormat')
@@ -193,7 +213,11 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         ;
 
         /* @var $env \PHPUnit_Framework_MockObject_MockObject|\Twig_Environment */
-        $env = $this->getMock(\Twig_Environment::class);
+        $env = $this
+            ->getMockBuilder(\Twig_Environment::class)
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
         $env
             ->expects($this->once())
             ->method('getExtension')
