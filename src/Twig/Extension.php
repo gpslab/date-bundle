@@ -18,17 +18,17 @@ class Extension extends \Twig_Extension
     /**
      * @var Formatter
      */
-    protected $formatter;
+    private $formatter;
 
     /**
      * @var Converter
      */
-    protected $converter;
+    private $converter;
 
     /**
      * @var Comparator
      */
-    protected $comparator;
+    private $comparator;
 
     /**
      * @param Formatter $formatter
