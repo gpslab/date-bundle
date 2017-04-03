@@ -19,7 +19,7 @@ class ConverterTest extends \PHPUnit_Framework_TestCase
      */
     public function getDates()
     {
-        $now = new \DateTime();
+        $now = new \DateTime('2017-04-03 17:00:00');
 
         $mock = $this->getMock(\DateTime::class);
         $mock
