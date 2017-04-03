@@ -33,7 +33,6 @@ class Util
 
     /**
      * @deprecated it will be removed in later.
-     *
      * @see RoundDate::round()
      * @codeCoverageIgnore
      *
