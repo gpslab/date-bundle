@@ -4,7 +4,7 @@ Configuration
 ```yml
 gpslab_date:
     # Is not required
-    # As a default uset timezone from date_default_timezone_get()
+    # As a default used timezone from date_default_timezone_get()
     time_zone: 'Europe/Moscow'
 
     # HTTP Cookie parameters for store user timezone
