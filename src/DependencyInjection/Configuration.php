@@ -35,8 +35,10 @@ class Configuration implements ConfigurationInterface
             ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('time_zone')
+                    ->defaultValue(date_default_timezone_get())
                 ->end()
                 ->arrayNode('cookie')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('used')
                             ->defaultValue(true)
@@ -51,6 +53,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ->end();
     }
 }
