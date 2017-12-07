@@ -1,0 +1,10 @@
+services:
+    gpslab.common.twig.extension:
+        class: GpsLab\Bundle\DateBundle\Twig\Extension
+        arguments:
+            - '@gpslab.date.formatter'
+            - '@gpslab.date.tz.converter'
+            - '@gpslab.date.tz.comparator'
+        public: false
+        tags:
+            - { name: twig.extension }

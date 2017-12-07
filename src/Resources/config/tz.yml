@@ -1,0 +1,12 @@
+services:
+    gpslab.date.tz.keeper:
+        class: GpsLab\Bundle\DateBundle\TimeZone\Keeper\ResolveAndKeep
+        arguments: [ '@gpslab.date.tz.resolver.collection', '@gpslab.date.converter', '%date.time_zone%' ]
+
+    gpslab.date.tz.comparator:
+        class: GpsLab\Bundle\DateBundle\TimeZone\Comparator
+        arguments: [ '@gpslab.date.comparator', '@gpslab.date.tz.keeper' ]
+
+    gpslab.date.tz.converter:
+        class: GpsLab\Bundle\DateBundle\TimeZone\Converter
+        arguments: [ '@gpslab.date.tz.keeper' ]

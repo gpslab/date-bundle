@@ -26,7 +26,11 @@ class GpsLabDateExtension extends Extension
         $container->setParameter('date.time_zone.cookie.param.offset', $config['cookie']['offset']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        $loader->load('date.yml');
+        $loader->load('listener.yml');
+        $loader->load('twig.yml');
+        $loader->load('tz.yml');
+        $loader->load('tz_resolver.yml');
     }
 
     /**

@@ -1,0 +1,10 @@
+services:
+    gpslab.date.comparator:
+        class: GpsLab\Bundle\DateBundle\Comparator
+
+    gpslab.date.converter:
+        class: GpsLab\Bundle\DateBundle\Converter
+
+    gpslab.date.formatter:
+        class: GpsLab\Bundle\DateBundle\Formatter
+        arguments: [ '@translator' ]
