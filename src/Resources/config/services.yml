@@ -1,12 +1,12 @@
 services:
     gpslab.date.comparator:
-        class: GpsLab\Bundle\DateBundle\Date\Comparator
+        class: GpsLab\Bundle\DateBundle\Comparator
 
     gpslab.date.converter:
-        class: GpsLab\Bundle\DateBundle\Date\Converter
+        class: GpsLab\Bundle\DateBundle\Converter
 
     gpslab.date.formatter:
-        class: GpsLab\Bundle\DateBundle\Date\Formatter
+        class: GpsLab\Bundle\DateBundle\Formatter
         arguments: [ '@translator' ]
 
     # Twig
@@ -22,22 +22,22 @@ services:
 
     # TimeZone utils
     gpslab.date.tz.keeper:
-        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Keeper\ResolveAndKeep
+        class: GpsLab\Bundle\DateBundle\TimeZone\Keeper\ResolveAndKeep
         arguments: [ '@gpslab.date.tz.resolver.collection', '@gpslab.date.converter', '%date.time_zone%' ]
 
     gpslab.date.tz.resolver.collection:
-        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\CollectionResolver
+        class: GpsLab\Bundle\DateBundle\TimeZone\Resolver\CollectionResolver
         public: false
 
     gpslab.date.tz.resolver.console:
-        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\ConsoleResolver
+        class: GpsLab\Bundle\DateBundle\TimeZone\Resolver\ConsoleResolver
         arguments: [ '%date.time_zone%' ]
         tags:
             - { name: gpslab.date.tz.resolver, priority: 1 }
         public: false
 
     gpslab.date.tz.resolver.request:
-        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Resolver\RequestResolver
+        class: GpsLab\Bundle\DateBundle\TimeZone\Resolver\RequestResolver
         arguments:
             - '@request_stack'
             - '%date.time_zone.cookie.used%'
@@ -47,11 +47,11 @@ services:
         public: false
 
     gpslab.date.tz.comparator:
-        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Comparator
+        class: GpsLab\Bundle\DateBundle\TimeZone\Comparator
         arguments: [ '@gpslab.date.comparator', '@gpslab.date.tz.keeper' ]
 
     gpslab.date.tz.converter:
-        class: GpsLab\Bundle\DateBundle\Date\TimeZone\Converter
+        class: GpsLab\Bundle\DateBundle\TimeZone\Converter
         arguments: [ '@gpslab.date.tz.keeper' ]
 
     gpslab.date.listener.response:
